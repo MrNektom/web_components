@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test task</title>
+    <style>
+        @font-face {
+            font-family: Monofur;
+            src: url("assets/monof55.ttf");
+        }
+        h1 {
+            text-align: center;
+            font-family: cursive;
+            position: fixed;
+            left: 0;
+            top: 45%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="text">Михаил Кошиков<br/>Начинающий web-программист / Junior Frontend Developer</h1>
+    <script>
+        let text = document.querySelector("#text")
+        text.addEventListener("mouseover",e=>{
+            e.currentTarget.animate([
+                {
+                    opacity:1
+                },{
+                    opacity:0
+                }
+            ],{
+                duration: 300
+            }).onfinish = e => {
+                text.style.fontFamily = "Monofur"
+                text.style.color = "#aaa"
+                text.animate([
+                    {
+                        opacity:0
+                    },{
+                        opacity:1
+                    }
+                ],{
+                    duration:300
+                })
+                document.body.animate([
+                    {
+                        backgroundColor:"#fff"
+                    },{
+                        backgroundColor:"#222"
+                    }
+                ],{
+                    duration:300
+                }).onfinish = e => document.body.style.backgroundColor = "#222"
+            }
+        })
+        text.addEventListener("mouseleave",e=>{
+            text.animate([
+                {
+                    opacity:1
+                },{
+                    opacity:0
+                }
+            ],{
+                duration:300
+            }).onfinish = e => {
+                text.style.fontFamily = "cursive"
+                text.style.color = "#000"
+                text.animate([
+                    {
+                        opacity:0
+                    },{
+                        opacity:1
+                    }
+                ],{
+                    duration:300
+                })
+                document.body.animate([
+                    {
+                        backgroundColor:"#222"
+                    },{
+                        backgroundColor:"#fff"
+                    }
+                ],{
+                    duration:300
+                }).onfinish = e => document.body.style.backgroundColor = "#fff"
+            }
+        })
+        text.addEventListener("click",e => {
+            text.animate([
+                {
+                    opacity:1
+                },{
+                    opacity:0
+                }
+            ],{
+                duration:300
+            }).onfinish = e => text.style.color = "#0000";
+        })
+        window.addEventListener("keypress",e=>{
+            if (e.code == "Space") {
+                text.remove()
+            }
+        })
+    </script>
+</body>
+</html>
